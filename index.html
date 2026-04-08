@@ -594,6 +594,12 @@ footer{background:var(--ink);border-top:4px solid var(--blue);padding:36px 40px;
   </div>
 </section>
 
+<!-- COOKIE NOTICE -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:var(--ink);border-top:3px solid var(--blue);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;z-index:9999;flex-wrap:wrap;">
+  <p style="font-family:var(--font-body);font-size:13px;font-weight:300;color:var(--slate-dark);margin:0;line-height:1.6;">This site uses cookies to analyze traffic via Google Analytics. By continuing to use this site, you accept our use of cookies.</p>
+  <button onclick="acceptCookies()" style="font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:var(--blue);color:var(--white);border:none;padding:12px 28px;cursor:pointer;white-space:nowrap;flex-shrink:0;">Got It</button>
+</div>
+
 <footer>
   <div class="footer-logo">MOLINA <span>CUSTOM WORKS</span></div>
   <div class="footer-copy">2026 Molina Custom Works - Florida and Nearby States</div>
@@ -665,6 +671,15 @@ document.querySelectorAll('.port-scroll').forEach(function(el) {
   el.addEventListener('mouseup', function() { isDown = false; });
   el.addEventListener('mousemove', function(e) { if (!isDown) return; e.preventDefault(); el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX); });
 });
+
+// Cookie banner
+function acceptCookies() {
+  document.getElementById('cookie-banner').style.display = 'none';
+  localStorage.setItem('cookiesAccepted', 'true');
+}
+if (localStorage.getItem('cookiesAccepted') === 'true') {
+  document.getElementById('cookie-banner').style.display = 'none';
+}
 
 // Mobile hamburger menu
 var hamburger = document.getElementById('nav-hamburger');
